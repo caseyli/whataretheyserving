@@ -1,0 +1,50 @@
+body {
+	margin:0px;
+}
+
+.container {
+	margin: 0 auto;
+	width: 800px;
+	padding: 0px 0 0px 0;
+}
+
+/* Header */
+.header {
+	height: 50px;
+	background:#eee;
+}
+
+.flash {
+	float:left;
+	padding: 5px;
+	background:white;
+	border: 1px solid black;
+}
+/* Navigation */
+
+.nav {
+	margin: 10px;
+	display:block;	
+	float:right;
+	a {
+		color:#444;
+		&:visited {
+			color:#444;
+		};
+		&:hover {
+			color:#777;
+		}
+		text-decoration:none;
+		font-family: 'Oswald';
+		margin: 0px 10px;
+	}
+}
+
+/* GENERAL TEXT */
+.color1-text {
+	color:#444;
+}
+
+.color2-text {
+	color:#F1A437;
+}

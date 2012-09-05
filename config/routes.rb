@@ -1,12 +1,21 @@
 Whataretheyserving::Application.routes.draw do
   
+  resources :locations
+
+  resources :companies
+
   devise_for :users, :path_names => { :sign_in => 'signin', :sign_out => 'signout', :sign_up => 'signup' }
 
-  get "pages/home"
-
-  get "pages/about"
-
   root :to => "pages#home"
+  
+  get "pages/home"
+  get "pages/about"
+  
+  match "/home" => "pages#home"
+  match "/about" => "pages#about"
+  
+  match "/signin" => redirect("/users/signin")
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

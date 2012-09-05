@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="main-title">
+	<span class="color1-text">WHAT</span><span class="color2-text">ARE</span><span class="color1-text">THEY</span><span class="color2-text">SERVING</span><span class="color1-text">?</span>
+</div>
+<div class="main-search">
+	<%= form_tag do %>
+		<%= text_field_tag :company %>
+		<%= submit_tag "Search" %>
+	<% end %>
+</div>
+<div class="main-actions">
+	<%= link_to "ADD NEW RESTAURANT/STORE", new_company_path %><br>
+	<%= link_to "ADD NEW LOCATION FOR EXISTING RESTAURANT/STORE", new_location_path %>
+</div>
