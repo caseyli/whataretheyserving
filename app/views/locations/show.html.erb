@@ -1,45 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @location.name %>
-</p>
+<h1><%= @location.name %></h1>
+<div class="location-information">
+	  <%= @location.street_1 %>,
+	  <%= @location.street2 %><br>
+	  <%= @location.city %>,
+	  <%= @location.prov_state %><br>
+	  <%= @location.postal_zip %><br>
+	  <%= @location.phone %>
+	  <%= @location.url %>
+</div>
+<h2>Entries</h2>
+<ul>
+	<% @location.entries.each do |entry| %>
+		<li><%= entry.description %></li>
+	<% end %>
+</ul>
+<div class="company-actions">
+	<%= link_to "ADD A NEW ENTRY", new_company_location_entry_path(@company, @location), :class => "primary-button"  %>
+</div>
 
-<p>
-  <b>Street 1:</b>
-  <%= @location.street_1 %>
-</p>
-
-<p>
-  <b>Street2:</b>
-  <%= @location.street2 %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @location.city %>
-</p>
-
-<p>
-  <b>Prov state:</b>
-  <%= @location.prov_state %>
-</p>
-
-<p>
-  <b>Postal zip:</b>
-  <%= @location.postal_zip %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @location.phone %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @location.url %>
-</p>
-
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<%= link_to 'Back', company_path(@company) %>

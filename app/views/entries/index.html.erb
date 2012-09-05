@@ -1,0 +1,29 @@
+<h1>Listing entries</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Upvotes</th>
+    <th>Downvotes</th>
+    <th>Location</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @entries.each do |entry| %>
+  <tr>
+    <td><%= entry.description %></td>
+    <td><%= entry.upvotes %></td>
+    <td><%= entry.downvotes %></td>
+    <td><%= entry.location_id %></td>
+    <td><%= link_to 'Show', entry %></td>
+    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+    <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Entry', new_entry_path %>

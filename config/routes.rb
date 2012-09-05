@@ -1,8 +1,10 @@
 Whataretheyserving::Application.routes.draw do
   
-  resources :locations
-
-  resources :companies
+  resources :companies do
+    resources :locations do
+      resources :entries
+    end
+  end
 
   devise_for :users, :path_names => { :sign_in => 'signin', :sign_out => 'signout', :sign_up => 'signup' }
 

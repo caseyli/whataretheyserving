@@ -1,10 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<h1><%= @company.name %></h1>
+<h2>Locations</h2>
+<ul>
+	<% @company.locations.each do |location| %>
+		<li><%= link_to "#{location.name} (#{location.address})", company_location_path(@company, location) %></li>
+	<% end %>
+</ul>
+<div class="company-actions">
+	<%= link_to "ADD A NEW LOCATION", new_company_location_path(@company), :class => "primary-button"  %>
+</div>
+<%= link_to 'Back', root_path %>
