@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "globals";
 @import "colorswatch";
 
 .entry {
@@ -34,6 +35,12 @@
                     color:#560100;
                 };
             }
+        }
+        
+        @media only screen and (max-width: $max-width-phone) {
+        	.votes-box {
+        	    font-size:2em;
+        	}
         }
     }
 }
