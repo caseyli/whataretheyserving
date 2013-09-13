@@ -4,7 +4,7 @@
 <h2>Locations</h2>
 <ul class="resource-list">
 	<% @company.locations.each do |location| %>
-		<li><%= link_to "#{location.name} (#{location.address})", company_location_path(@company, location) %></li>
+		<li><%= link_to "#{location.city} - #{location.address}", company_location_path(@company, location) %></li>
 	<% end %>
 </ul>
 <div class="company-actions">
