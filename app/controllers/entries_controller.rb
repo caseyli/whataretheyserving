@@ -16,7 +16,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
-    @entry = @location.entires.find(params[:id])
+    @entry = @location.entries.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -83,6 +83,48 @@ class EntriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def increment_upvotes
+		@entry = @location.entries.find(params[:id])
+		if @entry.upvotes.nil?
+			@entry.upvotes = 1
+		else
+			@entry.upvotes += 1
+		end
+		@success = @entry.save
+		
+		respond_to do |format|
+			format.json { render :json => { success: @success, value: @entry.upvotes }.to_json}
+		end
+	end
+	
+	def increment_downvotes
+		@entry = @location.entries.find(params[:id])
+		if @entry.downvotes.nil?
+			@entry.downvotes = 1
+		else
+			@entry.downvotes += 1
+		end
+		@success = @entry.save
+		
+		respond_to do |format|
+			format.json { render :json => { success: @success, value: @entry.downvotes }.to_json}
+		end
+	end
+	
+	def increment_soldoutvotes
+		@entry = @location.entries.find(params[:id])
+		if @entry.soldoutvotes.nil?
+			@entry.soldoutvotes = 1
+		else
+			@entry.soldoutvotes += 1
+		end
+		@success = @entry.save
+		
+		respond_to do |format|
+			format.json { render :json => { success: @success, value: @entry.soldoutvotes }.to_json}
+		end
+	end
   
   private
     def load_company_and_location

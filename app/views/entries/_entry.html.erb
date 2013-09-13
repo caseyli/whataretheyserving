@@ -7,12 +7,25 @@
 	</div>
 	<div class="actions">
 		<div class="votes-box">
-			<%= entry.upvotes || 0 %>
-			<%= link_to "#", class: "upvote", entry_id: entry.id do %><i class="icon-thumbs-up"></i><% end %>
+			<span class="vote-value"><%= entry.upvotes || 0 %></span>
+			<%= link_to "#", class: "upvote vote", 
+							 entry_id: entry.id,
+							 location_id: entry.location.id,
+							 company_id: entry.location.company.id do %><i class="icon-thumbs-up"></i><% end %>
 		</div>
 		<div class="votes-box">
-			<%= entry.downvotes || 0 %>
-			<%= link_to "#", class: "downvote", entry_id: entry.id do %><i class="icon-thumbs-down"></i><% end %>
+			<span class="vote-value"><%= entry.downvotes || 0 %></span>
+			<%= link_to "#", class: "downvote vote", 
+							 entry_id: entry.id,
+							 location_id: entry.location.id,
+							 company_id: entry.location.company.id do %><i class="icon-thumbs-down"></i><% end %>
+		</div>
+		<div class="votes-box">
+			<span class="vote-value"><%= entry.soldoutvotes || 0 %></span>
+			<%= link_to "#", class: "soldoutvote vote", 
+							 entry_id: entry.id,
+							 location_id: entry.location.id,
+							 company_id: entry.location.company.id do %><i class="icon-ban-circle"></i><% end %>
 		</div>
 	</div>
 </div>

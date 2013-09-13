@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130913041804) do
+ActiveRecord::Schema.define(:version => 20130913051801) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(:version => 20130913041804) do
     t.integer  "upvotes"
     t.integer  "downvotes"
     t.integer  "location_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.date     "date"
+    t.integer  "soldoutvotes"
   end
 
   create_table "locations", :force => true do |t|

@@ -2,7 +2,13 @@ Whataretheyserving::Application.routes.draw do
   
   resources :companies do
     resources :locations do
-      resources :entries
+      resources :entries do
+				member do
+					get 'increment_upvotes'
+					get 'increment_downvotes'
+					get 'increment_soldoutvotes'
+				end
+			end
     end
   end
 
