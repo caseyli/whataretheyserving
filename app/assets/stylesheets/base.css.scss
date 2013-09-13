@@ -150,6 +150,12 @@ input[type="text"], input[type="password"], input[type="email"] {
     };
 }
 
+.use-my-location {
+    padding:2px;
+    border:1px solid $gray;
+    margin:5px 0;
+}
+
 /* GENERAL LIST */
 ul.resource-list {
     list-style:none;
