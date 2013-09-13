@@ -1,15 +1,18 @@
-<div class="main-title">
-	<span class="color1-text">WHAT</span><span class="color2-text">ARE</span><span class="color1-text">THEY</span><span class="color2-text">SERVING</span><span class="color1-text">?</span>
+<div class="hero-image-container">
+	<%= image_tag "hero_960x400.png" %>
 </div>
 
 <h2>Restaurants / Stores</h2>
-<div class="main-actions">
-	<%= link_to "ADD NEW RESTAURANT/STORE", new_company_path, :class => "button" %><br>
-</div>
+
 <div class="main-companies-list">
 	<ul>
 		<% @companies.each do |company| %>
 			<li><%= link_to company.name, company %></li>
 		<% end %>
 	</ul>
+</div>
+<i class="icon-angle-right"></i>
+
+<div class="main-actions">
+	<%= link_to "ADD NEW RESTAURANT/STORE", new_company_path, :class => "button" %><br>
 </div>

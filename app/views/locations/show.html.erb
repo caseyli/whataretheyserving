@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @location.name %></h1>
+<h1><%= "#{@company.name}, #{@location.name}" %></h1>
 <div class="location-information">
 	  <%= @location.street_1 %>,
 	  <%= @location.street2 %><br>
@@ -10,14 +10,13 @@
 	  <%= @location.phone %>
 	  <%= @location.url %>
 </div>
-<h2>Entries</h2>
-<ul>
-	<% @location.entries.each do |entry| %>
-		<li><%= entry.description %></li>
-	<% end %>
-</ul>
+
 <div class="company-actions">
 	<%= link_to "ADD A NEW ENTRY", new_company_location_entry_path(@company, @location), :class => "button"  %>
 </div>
+
+<h2>Entries</h2>
+<%= render @location.entries %>
+
 
 <%= link_to 'Back', company_path(@company) %>

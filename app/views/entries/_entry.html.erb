@@ -1,0 +1,18 @@
+<div class="entry">
+	<div class="description">
+		<%= entry.description %>
+	</div>
+	<div class="date">
+		<%= entry.date %>
+	</div>
+	<div class="actions">
+		<div class="votes-box">
+			<%= entry.upvotes || 0 %>
+			<%= link_to "#", class: "upvote", entry_id: entry.id do %><i class="icon-thumbs-up"></i><% end %>
+		</div>
+		<div class="votes-box">
+			<%= entry.downvotes || 0 %>
+			<%= link_to "#", class: "downvote", entry_id: entry.id do %><i class="icon-thumbs-down"></i><% end %>
+		</div>
+	</div>
+</div>

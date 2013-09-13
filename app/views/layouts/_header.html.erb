@@ -1,13 +1,16 @@
-<% flash.each do |key, value| %>
-	<div class="flash <%= key %>"><%= value %></div>
-<% end %>
-
-<div class="nav">
-	<%= link_to "HOME", "/home" %>
-	<%= link_to "ABOUT", "/about" %>
-	<% if user_signed_in? %>
-		<%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %>
-	<% else %>
-		<%= link_to "SIGN IN", "/signin" %>
-	<% end %>
+<div class="header-logo">
+	<%= image_tag "logo_212x100.png" %>
 </div>
+
+<ul class="nav">
+	<li><%= link_to "HOME", "/home" %></li>
+	<li><%= link_to "ABOUT", "/about" %></li>
+	<% if user_signed_in? %>
+		<li><%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %></li>
+	<% else %>
+		<li><%= link_to "SIGN IN", "/signin" %></li>
+	<% end %>
+	<div class="clear">
+		
+	</div>
+</ul>

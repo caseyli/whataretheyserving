@@ -1,49 +1,100 @@
+@import "colorswatch";
+@import "globals";
+
 body {
 	margin:0px;
-	font-family: Oswald;
+	font-family: Arial;
 }
 
 .container {
 	margin: 0 auto;
-	width: 800px;
+	width: 960px;
 	padding: 0px 0 0px 0;
+}
+
+.clear {
+    clear:both;
+}
+
+@media only screen and (min-width: $max-width-phone) and (max-width: $max-width-tablet) {
+    .container {
+        max-width:768px;
+        margin:0 auto;
+    }   
+}
+
+@media only screen and (max-width: $max-width-phone) {
+	.container {
+		max-width:96%;
+		margin:0 auto;
+		padding:0 2%;
+	}	
 }
 
 /* Header */
 .header {
-	height: 50px;
+	height: 75px;
 	background:#eee;
+	
+	.header-logo {
+	    float:left;
+	    img {
+	        margin-top:12px;
+	        height:50px;
+        }
+    }
+	
+	/* Navigation */
+    .nav {
+        margin-top:25px;
+    	display:block;	
+    	float:right;
+    	
+    	li {
+    	    float:left;
+    	    
+    	    a {
+        		color:#444;
+        		&:visited {
+        			color:#444;
+        		};
+        		&:hover {
+        			color:#777;
+        		}
+        		text-decoration:none;
+        		font-family: 'Arial';
+        		margin: 0px 10px;
+        	}
+	    }
+    	
+    }
+    
+    @media only screen and (max-width: $max-width-phone) { 
+        height:auto;
+        .header-logo {
+            float:none;
+            text-align:center;
+            img {
+                margin:2px;
+            }
+        }
+        .nav {
+            margin:0;
+            li {
+                float:none;
+                text-align:center;
+                padding:5px;
+            }
+            float:none;
+        }
+    }
 }
 
-.flash {
-	float:left;
-	padding: 5px;
-	background:white;
-	border: 1px solid black;
-}
-/* Navigation */
 
-.nav {
-	margin: 10px;
-	display:block;	
-	float:right;
-	a {
-		color:#444;
-		&:visited {
-			color:#444;
-		};
-		&:hover {
-			color:#777;
-		}
-		text-decoration:none;
-		font-family: 'Oswald';
-		margin: 0px 10px;
-	}
-}
 
 /* GENERAL TEXT */
 .color1-text {
-	color:#444;
+	color:$dark-gray;
 }
 
 .color2-text {
@@ -52,16 +103,20 @@ body {
 
 /* GENERAL LINKS */
 a {
-	color:black;
+	color:$dark-gray;
 	text-decoration:none;
+	
+	&:hover {
+	    color:$orange;
+	};
 }
 
 /* GENERAL FORMS */
-input {
+input[type="text"], input[type="password"], input[type="email"] {
 	width: 300px;
 	padding: 5px;
 	border-radius: 5px;
-	border: 1px solid black;
+	border: 1px solid $dark-gray;
 }
 
 /* GENERAL BUTTONS */
@@ -75,10 +130,16 @@ input {
 	border:none;
 	
 	/* Default Color */
-	background:#FE8D38;
+	background:$orange;
     color:white;
     
     &:hover {
-        background:#C46D2D;
+        background:$dark-gray;
     };
+}
+
+/* GENERAL LIST */
+ul {
+    list-style:none;
+    padding-left:0;
 }
