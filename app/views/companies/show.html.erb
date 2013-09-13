@@ -2,7 +2,7 @@
 
 <h1><%= @company.name %></h1>
 <h2>Locations</h2>
-<ul>
+<ul class="resource-list">
 	<% @company.locations.each do |location| %>
 		<li><%= link_to "#{location.name} (#{location.address})", company_location_path(@company, location) %></li>
 	<% end %>
