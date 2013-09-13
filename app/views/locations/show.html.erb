@@ -11,12 +11,11 @@
 	  <%= @location.url %>
 </div>
 
-<div class="company-actions">
-	<%= link_to "ADD A NEW ENTRY", new_company_location_entry_path(@company, @location), :class => "button"  %>
-</div>
-
 <h2>Entries</h2>
 <%= render @location.entries %>
 
+<div class="company-actions">
+	<%= link_to "ADD A NEW ENTRY", new_company_location_entry_path(@company, @location), :class => "button"  %>
+</div>
 
 <%= link_to 'Back', company_path(@company) %>
