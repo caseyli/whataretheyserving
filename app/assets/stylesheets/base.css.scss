@@ -105,6 +105,14 @@ body {
 
 
 /* GENERAL TEXT */
+h1 {
+    margin-bottom:0;
+}
+
+h2 {
+    margin-bottom:0;
+}
+
 .color1-text {
 	color:$dark-gray;
 }
@@ -128,7 +136,23 @@ input[type="text"], input[type="password"], input[type="email"] {
 	width: 300px;
 	padding: 5px;
 	border-radius: 5px;
-	border: 1px solid $dark-gray;
+	border: 1px solid $gray;
+}
+
+input[type="submit"] {
+    font-size:1em;
+}
+
+@media only screen and (max-width: $max-width-phone) {
+	input[type="text"], input[type="password"], input[type="email"], input[type="submit"] {
+	    font-size:1.25em;
+	    padding:2%;
+	    width:96%;
+    }
+    
+    select {
+        font-size:1.25em;
+    }
 }
 
 /* GENERAL BUTTONS */
@@ -136,10 +160,10 @@ input[type="text"], input[type="password"], input[type="email"] {
 	padding: 15px 15px;
 	display:inline-block;
 	text-align:center;
-	color:black;
 	text-decoration:none;
 	border-radius: 5px;
 	border:none;
+	margin:10px 0;
 	
 	/* Default Color */
 	background:$orange;
@@ -154,4 +178,15 @@ input[type="text"], input[type="password"], input[type="email"] {
 ul.resource-list {
     list-style:none;
     padding-left:0;
+    li {
+        margin-bottom:5px;
+        
+        a {
+            padding:5px;
+            &:hover {
+                background:$orange;
+                color:white;
+            };
+        }
+    }
 }

@@ -7,7 +7,7 @@ $(function(){
 
 function changeUseMyLocationState(state) {
   if(state == "loading") {
-    $(".use-my-location").append("<i class='icon-refresh icon-spin'></i>");
+    $(".use-my-location").html("<i class='icon-refresh icon-spin'></i> Use My Location");
   }
   else {
     $(".use-my-location").html("<i class='icon-location-arrow'></i> Use My Location");
