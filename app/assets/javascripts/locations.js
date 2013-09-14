@@ -2,10 +2,27 @@ var geocoder;
 $(function(){
   geocoder = new google.maps.Geocoder();
   $(".use-my-location").click(initiateGeolocation);
-  
+
 });
 
+function changeUseMyLocationState(state) {
+  if(state == "loading") {
+    $(".use-my-location").append("<i class='icon-refresh icon-spin'></i>");
+  }
+  else {
+    $(".use-my-location").html("<i class='icon-location-arrow'></i> Use My Location");
+  }
+}
+
+function loadLocationForm(street_address, city, province_state, postal_zip) {
+  $("#location_street").val(street_address);
+  $("#location_city").val(city);
+  $("#location_prov_state").val(province_state);
+  $("#location_postal_zip").val(postal_zip);
+}
+
 function initiateGeolocation() {
+  changeUseMyLocationState("loading");
   navigator.geolocation.getCurrentPosition(useLocation, handleLocationErrors);
   return false;
 }
@@ -15,66 +32,85 @@ function useLocation(position){
 }
 
 function handleLocationErrors(error) {
-  
+
 }
 
 function reverseGeocodeLatLong(lat, lng) {
+
   var latlng = new google.maps.LatLng(lat, lng);
   geocoder.geocode({'latLng': latlng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-                
-        //find country name
-        var street_found = false;
-        var street = "";
-        var city_found = false;
-        var city = "";
-        var province_state_found = false;
-        var province_state = "";
-        var postal_zip_found = false;
-        var postal_zip = "";
-        
-        for (var i=0; i<results[0].address_components.length; i++) {
-          for (var j=0;j<results[0].address_components[i].types.length;j++) {
-            
-            //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-            if (results[0].address_components[i].types[j] == "street_address") {
-              //this is the object you are looking for
-              street = results[0].address_components[i];
-              street_found = true;
-            }
-            if (results[0].address_components[i].types[j] == "administrative_area_level_3") {
-              //this is the object you are looking for
-              city = results[0].address_components[i];
-              city_found = true;
-            }
-            if (results[0].address_components[i].types[j] == "administrative_area_level_1") {
-              //this is the object you are looking for
-              province_state = results[0].address_components[i];
-              province_state_found = true;
-            }
-            if (results[0].address_components[i].types[j] == "postal_code") {
-              //this is the object you are looking for
-              postal_zip = results[0].address_components[i];
-              postal_zip_found = true;
-            }
-            
-            if(street_found && city_found && province_state_found && postal_zip_found) {
-              break;
-            }
-            
+      // Cycle through results
+      var street_address_index = -1;
+      for(var i=0; i < results.length; i++) {
+        // Check to see if the types contains "street_address"
+        for(var j=0; j < results[i].types.length; j++) {
+          if(results[i].types[j] == "street_address") {
+            street_address_index = i;
+            break;
           }
         }
-        
-        //Gathered data
-        alert(street.long_name + ", " + city.long_name + ", " + province_state.long_name + ", " + postal_zip_found.long_name);
-
-
-      } else {
-        alert("No results found");
       }
-    } else {
-      alert("Could not locate due to: " + status);
-    }
+    
+      //find country name
+      var street_number_found = false;
+      var street_number = "";
+      var route_found = false;
+      var route = "";
+      var city_found = false;
+      var city = "";
+      var province_state_found = false;
+      var province_state = "";
+      var postal_zip_found = false;
+      var postal_zip = "";
+    
+    
+      if(street_address_index > -1) {
+        // Cycle through address components of 'street_address'
+        var street_address = results[street_address_index];
+        for(var i=0; i < street_address.address_components.length; i++) {
+        
+          // Cycle through types of the address component
+          for(var j=0; j < street_address.address_components[i].types.length; j++) {
+            if(street_address.address_components[i].types[j] == "street_number") {
+              street_number = street_address.address_components[i].short_name;
+              street_number_found = true;
+            }
+          
+            if(street_address.address_components[i].types[j] == "route") {
+              route = street_address.address_components[i].short_name;
+              route_found = true;
+            }
+          
+            if(street_address.address_components[i].types[j] == "locality") {
+              city = street_address.address_components[i].short_name;
+              city_found = true;;
+            }
+          
+            if(street_address.address_components[i].types[j] == "administrative_area_level_1") {
+              province_state = street_address.address_components[i].short_name;
+              province_state_found = true;
+            }
+          
+            if(street_address.address_components[i].types[j] == "postal_code") {
+              postal_zip = street_address.address_components[i].short_name;
+              postal_zip_found = true;
+            }
+          
+            if(street_number_found && route_found && city_found && province_state_found && postal_zip_found) {
+              break;
+            }
+          }
+        }
+      
+        //Gathered data
+        changeUseMyLocationState("default");
+        loadLocationForm(street_number + " " + route, city, province_state, postal_zip);
+      
+      }
+      else {
+        alert("We're sorry, we could not find your location.");
+      }
+    }      
   });
 }
