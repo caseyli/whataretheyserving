@@ -123,11 +123,12 @@ h2 {
 
 /* GENERAL LINKS */
 a {
-	color:$dark-gray;
+	color:$dark-orange;
 	text-decoration:none;
+	font-weight:bold;
 	
 	&:hover {
-	    color:$orange;
+	    color:$dark-gray;
 	};
 }
 
@@ -171,6 +172,7 @@ input[type="submit"] {
     
     &:hover {
         background:$dark-gray;
+        color:white;
     };
 }
 
