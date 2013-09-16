@@ -2,6 +2,13 @@
 	<%= image_tag "hero_960x400.png" %>
 </div>
 
+<h2>Latest Entries</h2>
+<ul class="resource-list latest-entries">
+	<% @latest_entries.each do |entry| %>
+		<li><%= link_to "#{entry.date} - #{entry.description} at #{entry.location.company.name} - #{entry.location.city} - #{entry.location.address}", company_location_path(entry.location.company, entry.location) %></li>
+	<% end %>
+</ul>
+
 <h2>Restaurants / Stores</h2>
 
 <div class="main-companies-list">
